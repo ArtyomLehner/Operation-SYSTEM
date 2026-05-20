@@ -194,7 +194,7 @@ clean:
 
 .PHONY: all clean asm_O0 asm_O2
 ```
-Скриншот 4: Работа make и make clean.
+Скриншот 4: Работа make.
 ![Makefile](screenshots/makefile.png)
 
 4. Параллельная версия (многопроцессность + синхронизация)

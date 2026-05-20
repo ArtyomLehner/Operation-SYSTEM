@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
     }
     int n = atoi(argv[1]);
     if (n < 0) {
-        printf("n äîëæíî áûòü >= 0\n");
+        printf("n Ã¤Ã®Ã«Ã¦Ã­Ã® Ã¡Ã»Ã²Ã¼ >= 0\n");
         return 1;
     }
     printf("fib(%d) = %" PRIu64 "\n", n, fib(n));

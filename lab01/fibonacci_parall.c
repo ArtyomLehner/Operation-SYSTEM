@@ -7,7 +7,7 @@
 #define RESULT_FILE   "results.txt"
 #define MUTEX_NAME    L"Global\\FibonacciMutex"
 
-// Запись результата в общий файл с мьютексом (такая же, как выше)
+// Г‡Г ГЇГЁГ±Гј Г°ГҐГ§ГіГ«ГјГІГ ГІГ  Гў Г®ГЎГ№ГЁГ© ГґГ Г©Г« Г± Г¬ГјГѕГІГҐГЄГ±Г®Г¬ (ГІГ ГЄГ Гї Г¦ГҐ, ГЄГ ГЄ ГўГ»ГёГҐ)
 void write_result(int n, unsigned long long res) {
     HANDLE hMutex = CreateMutexW(NULL, FALSE, MUTEX_NAME);
     if (hMutex == NULL) {
@@ -30,7 +30,7 @@ void write_result(int n, unsigned long long res) {
 
 int main(int argc, char *argv[]) {
     if (argc == 2) {
-        // Режим дочернего процесса: один аргумент – число n
+        // ГђГҐГ¦ГЁГ¬ Г¤Г®Г·ГҐГ°Г­ГҐГЈГ® ГЇГ°Г®Г¶ГҐГ±Г±Г : Г®Г¤ГЁГ­ Г Г°ГЈГіГ¬ГҐГ­ГІ вЂ“ Г·ГЁГ±Г«Г® n
         int n = atoi(argv[1]);
         unsigned long long res = fib(n);
         write_result(n, res);
@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    // Удаляем старый файл результатов
+    // Г“Г¤Г Г«ГїГҐГ¬ Г±ГІГ Г°Г»Г© ГґГ Г©Г« Г°ГҐГ§ГіГ«ГјГІГ ГІГ®Гў
     DeleteFileA(RESULT_FILE);
 
     int numChildren = argc - 1;
@@ -70,14 +70,14 @@ int main(int argc, char *argv[]) {
             free(hProcesses);
             return 1;
         }
-        CloseHandle(pi.hThread);  // поток не нужен
+        CloseHandle(pi.hThread);  // ГЇГ®ГІГ®ГЄ Г­ГҐ Г­ГіГ¦ГҐГ­
         hProcesses[i] = pi.hProcess;
     }
 
-    // Ждём завершения всех дочерних процессов
+    // Г†Г¤ВёГ¬ Г§Г ГўГҐГ°ГёГҐГ­ГЁГї ГўГ±ГҐГµ Г¤Г®Г·ГҐГ°Г­ГЁГµ ГЇГ°Г®Г¶ГҐГ±Г±Г®Гў
     WaitForMultipleObjects(numChildren, hProcesses, TRUE, INFINITE);
 
-    // Закрываем дескрипторы
+    // Г‡Г ГЄГ°Г»ГўГ ГҐГ¬ Г¤ГҐГ±ГЄГ°ГЁГЇГІГ®Г°Г»
     for (int i = 0; i < numChildren; i++) {
         CloseHandle(hProcesses[i]);
     }
